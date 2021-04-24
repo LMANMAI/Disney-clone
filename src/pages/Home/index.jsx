@@ -1,11 +1,18 @@
-import React from 'react'
+import React from "react";
+import styled from "styled-components";
 
+const BG = styled.div`
+  background: url("/images/home-background.png");
+  width: 100vw;
+  height: 100vh;
+`;
 const HomePage = () => {
-    return (
-        <div>
-            HomePage
-        </div>
-    )
-}
+  return (
+    <div>
+      <BG></BG>
+      HomePage
+    </div>
+  );
+};
 
-export default HomePage
+export default HomePage;
