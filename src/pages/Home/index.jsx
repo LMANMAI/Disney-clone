@@ -1,17 +1,31 @@
 import React from "react";
 import styled from "styled-components";
+import ImgSlider from "../components/ImgSlider";
+import Viewer from "../components/Viewer";
 
-const BG = styled.div`
-  background: url("/images/home-background.png");
-  width: 100vw;
-  height: 100vh;
+const Container = styled.main`
+  position: relative;
+  min-height: calc(100vh - 250px);
+  overflow-x: hidden;
+  display: block;
+  top: 72px;
+  padding: 0 calc(3.5vw - 5px);
+  &:after {
+    background: url("/images/home-background.png") center center / cover
+      no-repeat fixed;
+    content: "";
+    position: absolute;
+    inset: 0px;
+    opacity: 1;
+    z-index: -1;
+  }
 `;
 const HomePage = () => {
   return (
-    <div>
-      <BG></BG>
-      HomePage
-    </div>
+    <Container>
+      <ImgSlider />
+      <Viewer />
+    </Container>
   );
 };
 
