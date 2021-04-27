@@ -5,11 +5,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import {
   selectUserName,
-  selectUserEmail,
   selectUserPhoto,
   setUserLoginDetails,
   setSignOutState,
 } from "../../features/user/userSlice";
+import { Link } from "react-router-dom";
 const Nav = styled.nav`
   position: fixed;
   top: 0;
@@ -198,10 +198,10 @@ const Header = () => {
       ) : (
         <>
           <NavMenu>
-            <a>
+            <Link to="/home">
               <img src="images/home-icon.svg" alt="Home" />
               <span>home</span>
-            </a>
+            </Link>
             <a>
               <img src="images/search-icon.svg" alt="Home" />
               <span>search</span>
