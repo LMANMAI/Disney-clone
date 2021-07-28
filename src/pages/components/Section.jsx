@@ -44,6 +44,7 @@ const Wrap = styled.div`
 `;
 
 const Section = ({ tittle, arrayMovie }) => {
+  console.log(arrayMovie);
   return (
     <Container>
       <h4>{tittle}</h4>
@@ -54,7 +55,7 @@ const Section = ({ tittle, arrayMovie }) => {
               <Wrap>
                 {movie.id}
                 <Link to={`/detail/${movie.id}`}>
-                  <img src={movie.cardImg} alt={movie.title} />
+                  <img loading="lazy" src={movie.cardImg} alt={movie.title} />
                 </Link>
               </Wrap>
             ))

@@ -152,7 +152,7 @@ const DetailPage = () => {
       });
   }, [id]);
   console.log(data);
-  const { title, titleImg, subTitle, description, backgroundImg } = data;
+  const { titleImg, subTitle, description, backgroundImg } = data;
   return (
     <Container>
       <Background>

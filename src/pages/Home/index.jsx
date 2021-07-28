@@ -73,6 +73,7 @@ const HomePage = () => {
   const moviesOrig = useSelector(selectOriginals);
   const moviesNew = useSelector(selectNewdisney);
   const moviesTrend = useSelector(selectTrending);
+
   return (
     <Container>
       <ImgSlider />
