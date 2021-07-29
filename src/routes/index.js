@@ -6,7 +6,7 @@ import { selectUserName } from "../features/user/userSlice";
 import { useSelector } from "react-redux";
 const Routes = () => {
   const username = useSelector(selectUserName);
-  console.log(username);
+
   return (
     <Router>
       <Header />
