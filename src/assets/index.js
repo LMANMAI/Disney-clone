@@ -1,6 +1,17 @@
 import styled from "styled-components";
 import Slider from "react-slick";
 /**Login */
+export const WarningMessage = styled.div`
+  background-color: white;
+  width: 100%;
+  color: black;
+  position: fixed;
+  top: 0;
+  left: 0;
+  letter-spacing: 0;
+  text-align: center;
+  padding: 3px;
+`;
 export const LoginContainer = styled.section`
   overflow: hidden;
   display: flex;
@@ -329,7 +340,7 @@ export const SectionWrap = styled.div`
 /**Header */
 export const HeaderNav = styled.nav`
   position: fixed;
-  top: 0;
+  top: 16px;
   left: 0;
   right: 0;
   height: 70px;

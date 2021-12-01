@@ -17,6 +17,7 @@ import {
   HeaderImgUser,
   HeaderDropMenu,
   HeaderSignOutHover,
+  WarningMessage,
 } from "../../assets";
 const Header = () => {
   const dispatch = useDispatch();
@@ -62,9 +63,13 @@ const Header = () => {
 
   return (
     <HeaderNav>
+      <WarningMessage>
+        This is a study case project , is not the original page.
+      </WarningMessage>
       <HeaderLogoImage>
-        <img src="/images/logo.svg" alt="Disney +" />
+        {/* <img src="/images/logo.svg" alt="Disney +" /> */}
       </HeaderLogoImage>
+      <span>Disney+ CLONE</span>
       {!username ? (
         <HeaderButtonLogin onClick={handleAuth}>LOGIN</HeaderButtonLogin>
       ) : (
