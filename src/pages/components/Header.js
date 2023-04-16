@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
-import { auth, provider } from "../../firebase";
+import { auth, provider, signInWithPopup } from "../../firebase";
 import { useDispatch, useSelector } from "react-redux";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import {
   selectUserName,
   selectUserPhoto,
@@ -21,7 +21,7 @@ import {
 } from "../../assets";
 const Header = () => {
   const dispatch = useDispatch();
-  const history = useHistory();
+  const history = useNavigate();
   const username = useSelector(selectUserName);
   const photo = useSelector(selectUserPhoto);
   useEffect(() => {
@@ -33,17 +33,19 @@ const Header = () => {
     });
     // eslint-disable-next-line
   }, [username]);
+
   const handleAuth = () => {
+    console.log(provider);
     if (!username) {
-      auth
-        .signInWithPopup(provider)
+      signInWithPopup(auth, provider)
         .then((result) => {
           setUser(result.user);
+          console.log(result);
         })
-        .catch((error) => alert(error.message));
+        .catch((error) => console.log(error));
     } else if (username) {
       auth
-        .signOut()
+        .signOut(auth)
         .then(() => {
           dispatch(setSignOutState());
           history.push("/");
