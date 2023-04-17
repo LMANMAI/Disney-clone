@@ -303,7 +303,7 @@ export const SectionContainer = styled.div`
 export const SectionContent = styled.div`
   display: grid;
   gap: 25px;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(5, minmax(0, 1fr));
 
   @media (max-width: 768px) {
     grid-template-columns: repeat(2, minmax(0, 1fr));

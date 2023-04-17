@@ -3,8 +3,9 @@ import ImgSlider from "../components/ImgSlider";
 import Viewer from "../components/Viewer";
 import Section from "../components/Section";
 import { useDispatch, useSelector } from "react-redux";
-import { storage, doc, set, setDoc } from "../../firebase";
+import db, { storage, doc, set, setDoc } from "../../firebase";
 
+import { collection, getDocs } from "firebase/firestore";
 import { getStorage, ref, listAll } from "firebase/storage";
 
 import { setMovies } from "../../features/movie/movieSlice";
@@ -25,48 +26,36 @@ const HomePage = () => {
   let newdisney = [];
   let originals = [];
   useEffect(() => {
-    const listRef = ref(storage, "files/movies");
+    (async () => {
+      const querySnapshot = await getDocs(collection(db, "movies"));
+      querySnapshot.forEach((doc) => {
+        switch (doc.data().type) {
+          case "recommend":
+            recommends = [...recommends, { id: doc.id, ...doc.data() }];
+            break;
+          case "new":
+            newdisney = [...newdisney, { id: doc.id, ...doc.data() }];
+            break;
+          case "trending":
+            trend = [...trend, { id: doc.id, ...doc.data() }];
+            break;
+          case "original":
+            originals = [...originals, { id: doc.id, ...doc.data() }];
+            break;
+          default:
+            break;
+        }
 
-    listAll(listRef)
-      .then((res) => {
-        res.prefixes.forEach((folderRef) => {
-          console.log("folderRef", folderRef);
-        });
-        res.items.forEach((itemRef) => {
-          console.log("itemRef", itemRef);
-        });
-      })
-      .catch((error) => console.log(error));
-    console.log(listRef, "listRef");
-
-    // db.collection("movies").onSnapshot((snapshoot) => {
-    //   snapshoot.docs.forEach((doc) => {
-    //     switch (doc.data().type) {
-    //       case "recommend":
-    //         recommends = [...recommends, { id: doc.id, ...doc.data() }];
-    //         break;
-    //       case "new":
-    //         newdisney = [...newdisney, { id: doc.id, ...doc.data() }];
-    //         break;
-    //       case "trending":
-    //         trend = [...trend, { id: doc.id, ...doc.data() }];
-    //         break;
-    //       case "original":
-    //         originals = [...originals, { id: doc.id, ...doc.data() }];
-    //         break;
-    //       default:
-    //         break;
-    //     }
-    //   });
-    //   dispatch(
-    //     setMovies({
-    //       recommended: recommends,
-    //       newdisney: newdisney,
-    //       trending: trend,
-    //       originals: originals,
-    //     })
-    //   );
-    // });
+        dispatch(
+          setMovies({
+            recommended: recommends,
+            newdisney: newdisney,
+            trending: trend,
+            originals: originals,
+          })
+        );
+      });
+    })();
 
     // eslint-disable-next-line
   }, [username]);
