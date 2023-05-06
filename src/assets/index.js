@@ -444,36 +444,48 @@ export const HeaderImgUser = styled.img`
   border-radius: 100%;
   width: 100%;
   height: 100%;
-`;
-export const HeaderDropMenu = styled.div`
-  position: absolute;
-  top: 48px;
-  right: 0;
-  background-color: rgb(19, 19, 19);
-  letter-spacing: 3px;
-  font-size: 13px;
-  width: 100px;
-  padding: 10px;
-  border: 1px solid rgba(151, 151, 151, 0.34);
-  border-radius: 4px;
-  box-shadow: rgb(0 0 0 /50%) 0px 0px 18px 0px;
-  transition: all 250ms ease-in-out;
-  opacity: 0;
-`;
-export const HeaderSignOutHover = styled.div`
-  position: relative;
-  height: 48px;
-  width: 48px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
+  margin-top: 3px;
 
   &:hover {
     ${HeaderDropMenu} {
       opacity: 1;
     }
   }
+`;
+export const HeaderDropMenu = styled.div`
+  position: absolute;
+  top: 0px;
+  right: -23px;
+  height: 330px;
+  background-color: rgb(19, 19, 19);
+  letter-spacing: 3px;
+  font-size: 13px;
+  width: 260px;
+  padding: 10px;
+  border: 1px solid rgba(151, 151, 151, 0.34);
+  border-radius: 4px;
+  box-shadow: rgb(0 0 0 /50%) 0px 0px 18px 0px;
+  transition: all 250ms ease-in-out;
+  opacity: 0;
+  display: flex;
+  flex-direction: column;
+  padding-top: 55px;
+`;
+export const HeaderSignOutHover = styled.div`
+  position: relative;
+  height: 48px;
+  width: 48px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+
+  // &:hover {
+  //   ${HeaderDropMenu} {
+  //     opacity: 1;
+  //   }
+  // }
 `;
 /**img slider */
 export const IMGSliderCarrousel = styled(Slider)`

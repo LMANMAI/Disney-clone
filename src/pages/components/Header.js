@@ -21,26 +21,24 @@ import {
 } from "../../assets";
 const Header = () => {
   const dispatch = useDispatch();
-  const history = useNavigate();
+  const navigate = useNavigate();
   const username = useSelector(selectUserName);
   const photo = useSelector(selectUserPhoto);
   useEffect(() => {
     auth.onAuthStateChanged(async (user) => {
       if (user) {
         setUser(user);
-        history.push("/home");
+        navigate("/home");
       }
     });
     // eslint-disable-next-line
   }, [username]);
 
   const handleAuth = () => {
-    console.log(provider);
     if (!username) {
       signInWithPopup(auth, provider)
         .then((result) => {
           setUser(result.user);
-          console.log(result);
         })
         .catch((error) => console.log(error));
     } else if (username) {
@@ -48,7 +46,7 @@ const Header = () => {
         .signOut(auth)
         .then(() => {
           dispatch(setSignOutState());
-          history.push("/");
+          navigate("/");
         })
         .catch((err) => alert(err.message));
     }
@@ -69,9 +67,8 @@ const Header = () => {
         This is a study case project , is not the original page.
       </WarningMessage>
       <HeaderLogoImage>
-        {/* <img src="/images/logo.svg" alt="Disney +" /> */}
+        <img src="/images/logo.svg" alt="Disney +" />
       </HeaderLogoImage>
-      <span>Disney+ CLONE</span>
       {!username ? (
         <HeaderButtonLogin onClick={handleAuth}>LOGIN</HeaderButtonLogin>
       ) : (
@@ -105,7 +102,11 @@ const Header = () => {
           <HeaderSignOutHover>
             <HeaderImgUser src={photo} alt={username} />
             <HeaderDropMenu>
-              <span onClick={handleAuth}>Sign Out</span>
+              <span>Editar Perfiles</span>
+              <span>Ajustes de la aplicacion</span>
+              <span>Cuenta</span>
+              <span>Ayuda</span>
+              <span onClick={() => handleAuth}>Cerrar Sesion</span>
             </HeaderDropMenu>
           </HeaderSignOutHover>
         </>
