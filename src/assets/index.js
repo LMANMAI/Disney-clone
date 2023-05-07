@@ -440,22 +440,10 @@ export const HeaderButtonLogin = styled.a`
     border-color: transparent;
   }
 `;
-export const HeaderImgUser = styled.img`
-  border-radius: 100%;
-  width: 100%;
-  height: 100%;
-  margin-top: 3px;
-
-  &:hover {
-    ${HeaderDropMenu} {
-      opacity: 1;
-    }
-  }
-`;
 export const HeaderDropMenu = styled.div`
   position: absolute;
-  top: 0px;
-  right: -23px;
+  top: -2px;
+  right: -30px;
   height: 330px;
   background-color: rgb(19, 19, 19);
   letter-spacing: 3px;
@@ -470,22 +458,43 @@ export const HeaderDropMenu = styled.div`
   display: flex;
   flex-direction: column;
   padding-top: 55px;
+  pointer-events: none;
+  list-style: none;
+  li {
+    margin: 7px;
+    padding: 8px 0px;
+
+    font-size: 15px;
+  }
 `;
+export const HeaderImgUser = styled.img`
+  border-radius: 100%;
+  width: 100%;
+  height: 100%;
+  margin-top: 3px;
+  z-index: 99;
+  &:hover {
+    ${HeaderDropMenu} {
+      opacity: 1;
+    }
+  }
+`;
+
 export const HeaderSignOutHover = styled.div`
   position: relative;
   height: 48px;
   width: 48px;
-
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-
-  // &:hover {
-  //   ${HeaderDropMenu} {
-  //     opacity: 1;
-  //   }
-  // }
+  z-index: 99;
+  &:hover {
+    ${HeaderDropMenu} {
+      opacity: 1;
+      pointer-events: all;
+    }
+  }
 `;
 /**img slider */
 export const IMGSliderCarrousel = styled(Slider)`
