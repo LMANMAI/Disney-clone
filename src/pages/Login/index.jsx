@@ -15,7 +15,15 @@ const LoginPage = () => {
         <LoginBrandContent>
           {/* <LoginBrands src="/images/cta-logo-one.svg " alt="brand images" /> */}
           <span>Diseney Clone</span>
-          <LoginButton>GET ALL THERE</LoginButton>
+          <LoginButton
+            onClick={() =>
+              alert(
+                "This is a case study for my portfolio, it is a copy of the disney+ spa, it is not the original page, in fact it does not have any payment gateway, to verify that you can review one of my other projects. Thank you."
+              )
+            }
+          >
+            GET ALL THERE
+          </LoginButton>
           <LoginDesc>
             Disfrútalo en tu pantalla favorita, ya sea tu TV, tableta,
             computadora, teléfono y otros. Vive una experiencia única con una
