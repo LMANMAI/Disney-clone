@@ -297,44 +297,99 @@ export const ViewerWrapper = styled.div`
 `;
 /* Section */
 
-export const SectionContainer = styled.div`
-  padding: 0 0 26px;
+export const RowWraper = styled.div`
+  .contenedor_titulo_controles {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    h3 {
+      font-size: 1.525rem;
+      color: #fff;
+      margin: 0px;
+    }
+  }
 `;
-export const SectionContent = styled.div`
-  display: grid;
-  gap: 25px;
-  grid-template-columns: repeat(5, minmax(0, 1fr));
 
-  @media (max-width: 768px) {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+export const ContenedorPrincipal = styled.div`
+  display: flex;
+  align-items: center;
+  position: relative;
+  .flecha_izquierda {
+    left: 0;
+  }
+  .flecha_derecha {
+    right: 0;
+  }
+  scroll-behavior: smooth;
+`;
+export const ContenedorCarrousel = styled.div`
+  width: 100%;
+  overflow: hidden;
+`;
+export const Carrousel = styled.div`
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 25px;
+  scroll-behavior: smooth;
+  padding: 10px;
+`;
+export const Pelicula = styled.div`
+width: calc(100% / 5)
+  padding: 10px;
+  position: relative;
+  border-radius: 5px;
+  img {
+    width: 100%;
+    vertical-align: top;
+        border-radius: 5px;
+        transition: all 0.2s ease 0s;
+    box-shadow: rgba(0, 0, 0, 0.3) 5px 5px 10px;
+    border-radius: 5px;
+    &:hover {
+      box-shadow: rgb(0 0 0 / 80%) 0px 40px 58px -14px,
+        rgb(0 0 0 /72%) 0px 30px 22px -10px;
+      transform: scale(1.04);
+      border-color: rgba(249, 249, 249, 0.8);
+      transform-origin: center;
+      z-index: 2;
+      .overlay {
+        height: 30%;
+      }
+}
+  }
+  @media (min-width: 768px) {
+    min-width: 25%;
+  }
+  
+  }
+
+  .text {
+    white-space: nowrap;
+    color: white;
+    font-size: 12px;
+    position: absolute;
+    overflow: hidden;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
   }
 `;
-export const SectionWrap = styled.div`
-  padding-top: 56.25%;
-  border-radius: 10px;
+export const ButtonCarrousel = styled.button`
+  position: absolute;
+  border: none;
+  background-color: rgba(0, 0, 0, 0.3);
+  font-size: 2.125rem;
+  height: calc(100% - 20px);
+  top: calc(50%, 25%);
+  line-height: 2.125rem;
+  width: 50px;
+  color: white;
   cursor: pointer;
-  overflow: hidden;
-  box-shadow: rgb(0 0 0 / 69%) 0px 26px 30px -10px,
-    rgb(0 0 0 /73%) 0px 16px 10px -10px;
-  position: relative;
-  transition: all 250ms cubic-bezier(0.25, 0.46, 0.45, 0.94) 0s;
-  border: 3px solid rgba(249, 249, 249, 0.1);
-  img {
-    inset: 0px;
-    object-fit: cover;
-    position: absolute;
-    display: block;
-    height: 100%;
-    width: 100%;
-    opacity: 1;
-    top: 0;
-    transition: opacity 500ms ease-in-out 0s;
-  }
+  z-index: 5;
+  transition: 0.2s ease-in-out;
   &:hover {
-    box-shadow: rgb(0 0 0 / 80%) 0px 40px 58px -16px,
-      rgb(0 0 0 /72%) 0px 30px 22px -10px;
-    transform: scale(1.04);
-    border-color: rgba(249, 249, 249, 0.8);
+    background-color: rgba(0, 0, 0, 0.8);
   }
 `;
 /**Header */
@@ -351,7 +406,7 @@ export const HeaderNav = styled.nav`
   align-items: center;
   padding: 0 30px;
   letter-spacing: 15px;
-  z-index: 3;
+  z-index: 10;
 `;
 export const HeaderLogoImage = styled.a`
   padding: 0;
