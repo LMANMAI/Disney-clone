@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { auth, provider, signInWithPopup } from "../../../firebase";
+import { auth, provider, signInWithPopup } from "../../../services/firebase";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import {
@@ -11,7 +11,6 @@ import {
 import { Link } from "react-router-dom";
 import {
   HeaderNav,
-  HeaderLogoImage,
   HeaderNavMenu,
   HeaderButtonLogin,
   HeaderImgUser,
@@ -19,6 +18,14 @@ import {
   HeaderSignOutHover,
   WarningMessage,
 } from "../../../assets";
+
+type UserType = {
+  displayName: string | null;
+  email: string | null;
+  photoURL: string | null;
+  // Otros campos relacionados con el usuario
+};
+
 const Header = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -43,7 +50,7 @@ const Header = () => {
         .catch((error) => console.log(error));
     } else if (username) {
       auth
-        .signOut(auth)
+        .signOut()
         .then(() => {
           dispatch(setSignOutState());
           navigate("/");
@@ -51,10 +58,12 @@ const Header = () => {
         .catch((err) => alert(err.message));
     }
   };
-  const setUser = (user) => {
+
+  const setUser = (user: UserType) => {
+    const displayName = user.displayName || "Usuario Anónimo";
     dispatch(
       setUserLoginDetails({
-        name: user.displayName,
+        name: displayName,
         email: user.email,
         photo: user.photoURL,
       })
@@ -66,9 +75,6 @@ const Header = () => {
       <WarningMessage>
         This is a study case project , is not the original page.
       </WarningMessage>
-      <HeaderLogoImage>
-        <img src="/images/logo.svg" alt="Disney +" />
-      </HeaderLogoImage>
       {!username ? (
         <HeaderButtonLogin onClick={handleAuth}>LOGIN</HeaderButtonLogin>
       ) : (
@@ -100,7 +106,7 @@ const Header = () => {
             </a>
           </HeaderNavMenu>
           <HeaderSignOutHover>
-            <HeaderImgUser src={photo} alt={username} />
+            <HeaderImgUser src={photo || ""} alt={username || ""} />
             <HeaderDropMenu>
               <li>Editar Perfiles</li>
               <li>Ajustes de la aplicacion</li>
