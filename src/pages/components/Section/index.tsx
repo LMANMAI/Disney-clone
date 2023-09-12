@@ -10,17 +10,38 @@ import {
 } from "../../../assets";
 import { Link } from "react-router-dom";
 
-const Section = ({ tittle, arrayMovie }) => {
+type MovieData = {
+  title?: string;
+  name?: string;
+  backgroundImg: string;
+  cardImg: string;
+  subTitle: string;
+  description: string;
+  titleImg: string;
+  id: number; // O el tipo de dato correcto para el ID
+};
+
+const Section = ({
+  tittle,
+  arrayMovie,
+}: {
+  tittle: string;
+  arrayMovie: MovieData[] | null; // Cambiar a un array de MovieData
+}) => {
   const baseUrl = "https://image.tmdb.org/t/p/original/";
 
   //Scroll
   const scrollRight = () => {
     const fila = document.getElementById(`contenedor_carrousel_${tittle}`);
-    fila.scrollLeft += fila.offsetWidth;
+    if (fila) {
+      fila.scrollLeft += fila.offsetWidth;
+    }
   };
   const scrollLeft = () => {
     const fila = document.getElementById(`contenedor_carrousel_${tittle}`);
-    fila.scrollLeft -= fila.offsetWidth;
+    if (fila) {
+      fila.scrollLeft -= fila.offsetWidth;
+    }
   };
 
   return (
@@ -37,6 +58,7 @@ const Section = ({ tittle, arrayMovie }) => {
         >
           <BiLeftArrow />
         </ButtonCarrousel>
+
         <ContenedorCarrousel
           className={`contenedor_carrousel ${tittle}`}
           id={`contenedor_carrousel_${tittle}`}
@@ -44,18 +66,21 @@ const Section = ({ tittle, arrayMovie }) => {
           <Carrousel className="carrousel">
             {arrayMovie?.map((onemovie) => (
               <Pelicula className={`pelicula_${tittle}`} key={onemovie.id}>
-                <a href="#">
+                <Link
+                  to={`/detail/${onemovie.id}`}
+                  onClick={() => console.log(onemovie)}
+                >
                   <img
                     loading="lazy"
                     src={`${baseUrl}${onemovie.backgroundImg}`}
-                    alt={onemovie.title}
+                    alt={onemovie.title || onemovie.name}
                   />
                   <div className="overlay">
                     <div className="text">
                       {onemovie.title || onemovie.name}
                     </div>
                   </div>
-                </a>
+                </Link>
               </Pelicula>
             ))}
           </Carrousel>
