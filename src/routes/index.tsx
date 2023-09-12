@@ -15,7 +15,7 @@ const RoutesComponent = () => {
         {username && (
           <>
             <Route path="/home" element={<HomePage />} />
-            <Route path="/detail/:id" element={<DetailPage />} />
+            <Route path="/home/:id" element={<DetailPage />} />
           </>
         )}
       </Routes>

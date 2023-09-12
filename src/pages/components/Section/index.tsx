@@ -58,6 +58,7 @@ const Section = ({
         >
           <BiLeftArrow />
         </ButtonCarrousel>
+
         <ContenedorCarrousel
           className={`contenedor_carrousel ${tittle}`}
           id={`contenedor_carrousel_${tittle}`}

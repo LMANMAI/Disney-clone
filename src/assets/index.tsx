@@ -247,9 +247,12 @@ export const ViewerContainer = styled.div`
   padding: 30px 0px 26px;
   display: grid;
   grid-gap: 25px;
-  grid-template-columns: repeat(5, minmax(0, 1fr));
-  @media (max-width: 768px) {
-    grid-template-columns: repeat(1, minmax(0, 1fr));
+  grid-template-columns: repeat(3, 1fr);
+  @media (min-width: 768px) {
+    grid-template-columns: repeat(4, 1fr);
+  }
+  @media (min-width: 1024px) {
+    grid-template-columns: repeat(5, 1fr);
   }
 `;
 export const ViewerWrapper = styled.div`
@@ -329,22 +332,27 @@ export const ContenedorCarrousel = styled.div`
 export const Carrousel = styled.div`
   display: flex;
   flex-wrap: nowrap;
-  gap: 25px;
+  gap: 10px;
   scroll-behavior: smooth;
   padding: 10px;
 `;
 export const Pelicula = styled.div`
-width: calc(100% / 5)
-  padding: 10px;
+  width: 100%;
+  min-width: 200px;
   position: relative;
   border-radius: 5px;
+  transition: smooth;
+  a {
+    display: block;
+  }
   img {
     width: 100%;
     vertical-align: top;
-        border-radius: 5px;
-        transition: all 0.2s ease 0s;
+    border-radius: 5px;
+    transition: all 0.2s ease 0s;
     box-shadow: rgba(0, 0, 0, 0.3) 5px 5px 10px;
     border-radius: 5px;
+    object-fit: cover;
     &:hover {
       box-shadow: rgb(0 0 0 / 80%) 0px 40px 58px -14px,
         rgb(0 0 0 /72%) 0px 30px 22px -10px;
@@ -355,14 +363,14 @@ width: calc(100% / 5)
       .overlay {
         height: 30%;
       }
-}
+    }
   }
   @media (min-width: 768px) {
-    min-width: 25%;
+    min-width: 20%;
   }
-  
+  @media (min-width: 1024px) {
+    min-width: 19%;
   }
-
   .text {
     white-space: nowrap;
     color: white;
