@@ -23,7 +23,6 @@ type UserType = {
   displayName: string | null;
   email: string | null;
   photoURL: string | null;
-  // Otros campos relacionados con el usuario
 };
 
 const Header = () => {
