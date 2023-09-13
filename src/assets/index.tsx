@@ -101,8 +101,8 @@ export const HomeContainer = styled.main`
   min-height: calc(100vh - 250px);
   overflow-x: hidden;
   display: block;
-  top: 72px;
-  padding: 0 calc(3.5vw - 5px);
+  padding: 0px calc(3.5vw - 5px);
+  padding-top: 72px;
   &:after {
     background: url("/images/home-background.png") center center / cover
       no-repeat fixed;
@@ -120,7 +120,6 @@ export const DetailContainer = styled.div`
   min-height: calc(100vh - 250px);
   overflow-x: hidden;
   display: block;
-  top: 72px;
   padding: 0 calc(3.5vw + 5px);
   .back__btn {
     z-index: 11;
@@ -442,7 +441,7 @@ export const HeaderNav = styled.nav`
   left: 0;
   right: 0;
   height: 70px;
-  background-color: #090b13;
+  background-color: transparent;
   width: 100%;
   display: flex;
   justify-content: space-between;
@@ -450,6 +449,7 @@ export const HeaderNav = styled.nav`
   padding: 0 30px;
   letter-spacing: 15px;
   z-index: 10;
+  transition: background 250ms ease;
 `;
 export const HeaderLogoImage = styled.a`
   padding: 0;

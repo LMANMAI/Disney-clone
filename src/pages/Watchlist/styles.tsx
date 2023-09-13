@@ -1,10 +1,9 @@
 import styled from "styled-components";
 
 export const WatchlistContainer = styled.section`
-  margin-top: 100px;
+  margin-top: 75px;
   padding: 10px 25px;
   margin: 0px auto;
-  margin-top: 100px;
   padding: 10px 25px;
   width: calc(100vw - 60px);
   display: grid;

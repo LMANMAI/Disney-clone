@@ -7,7 +7,7 @@ const Categories = () => {
   const { categ } = useParams<{ categ: Category }>();
   const categoryInfo = categ ? categoryData[categ] : undefined;
   if (!categoryInfo) {
-    return <div>Categoría no encontrada</div>; // Maneja el caso en que la categoría no existe
+    return <div>Categoría no encontrada</div>;
   }
 
   const { nombre, categoria, src, url, brandcover } = categoryInfo;

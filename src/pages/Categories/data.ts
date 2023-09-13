@@ -46,7 +46,7 @@ export const categoryData: Record<
   starwars: {
     nombre: "star wars",
     categoria: "starwars",
-    src: "/images/cat/starwars.jpeg",
+    src: "/images/cat/stwars.jpeg",
     url: "https://ejemplo.com/marvel",
     brandcover: "/images/cat/scale.png",
   },

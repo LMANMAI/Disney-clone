@@ -39,3 +39,8 @@ span {
   letter-spacing: 0;
   margin: 7px;
 }
+
+.scroll-active {
+  background-color: #090b13;
+}
+

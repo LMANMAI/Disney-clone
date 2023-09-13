@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { auth, provider, signInWithPopup } from "../../../services/firebase";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
@@ -40,6 +40,30 @@ const Header = () => {
     // eslint-disable-next-line
   }, [username]);
 
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentPosition = window.scrollY;
+      const navContainer = document.querySelector(
+        ".nav__container"
+      ) as HTMLElement;
+
+      if (navContainer) {
+        if (currentPosition >= 50) {
+          navContainer.style.background =
+            currentPosition >= 50 ? "#090b13" : "transparent";
+          navContainer.classList.add("scroll-active");
+        } else {
+          navContainer.style.background =
+            currentPosition < 50 ? "transparent" : "#090b13";
+          navContainer.classList.remove("scroll-active");
+        }
+      }
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
   const handleAuth = () => {
     if (!username) {
       signInWithPopup(auth, provider)
@@ -71,7 +95,7 @@ const Header = () => {
   };
 
   return (
-    <HeaderNav>
+    <HeaderNav className="nav__container">
       <WarningMessage>
         This is a study case project , is not the original page.
       </WarningMessage>

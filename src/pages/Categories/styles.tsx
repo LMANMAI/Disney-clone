@@ -1,10 +1,8 @@
 import styled from "styled-components";
 
 export const CatContainer = styled.section`
-  margin-top: 100px;
   padding: 10px 25px;
   margin: 0px auto;
-  margin-top: 100px;
   padding: 10px 25px;
   width: calc(100vw - 60px);
   transition: 250ms ease-in-out;
@@ -21,7 +19,7 @@ export const CatContainer = styled.section`
     //opacity: 0;
     position: fixed;
     right: 0px;
-    top: 0px;
+   // top: 70px;
     transition: opacity 200ms ease 0s;
     width: 100%;
     z-index: -1;
