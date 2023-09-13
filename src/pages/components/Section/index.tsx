@@ -66,10 +66,7 @@ const Section = ({
           <Carrousel className="carrousel">
             {arrayMovie?.map((onemovie) => (
               <Pelicula className={`pelicula_${tittle}`} key={onemovie.id}>
-                <Link
-                  to={`/detail/${onemovie.id}`}
-                  onClick={() => console.log(onemovie)}
-                >
+                <Link to={`/${onemovie.id}`}>
                   <img
                     loading="lazy"
                     src={`${baseUrl}${onemovie.backgroundImg}`}

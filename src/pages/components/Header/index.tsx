@@ -46,7 +46,7 @@ const Header = () => {
         .then((result) => {
           setUser(result.user);
         })
-        .catch((error) => console.log(error));
+        .catch((error) => {});
     } else if (username) {
       auth
         .signOut()
@@ -60,10 +60,11 @@ const Header = () => {
 
   const setUser = (user: UserType) => {
     const displayName = user.displayName || "Usuario Anónimo";
+    const email = user.email || "";
     dispatch(
       setUserLoginDetails({
         name: displayName,
-        email: user.email,
+        email: email,
         photo: user.photoURL,
       })
     );
@@ -87,10 +88,10 @@ const Header = () => {
               <img src="images/search-icon.svg" alt="Home" />
               <span>search</span>
             </a>
-            <a>
+            <Link to="/watchlist">
               <img src="images/watchlist-icon.svg" alt="Home" />
               <span>watchlist</span>
-            </a>
+            </Link>
             <a>
               <img src="images/original-icon.svg" alt="Home" />
               <span>originals</span>

@@ -1,5 +1,12 @@
 import styled from "styled-components";
 import Slider from "react-slick";
+interface IDetailAddListButton {
+  rotate?: boolean;
+}
+interface IDetailControlMeta {
+  display?: boolean;
+}
+
 /**Login */
 export const WarningMessage = styled.div`
   background-color: white;
@@ -115,10 +122,13 @@ export const DetailContainer = styled.div`
   display: block;
   top: 72px;
   padding: 0 calc(3.5vw + 5px);
+  .back__btn {
+    z-index: 11;
+  }
 `;
 export const DetailBackground = styled.div`
   left: 0;
-  opacity: 0.9;
+  opacity: 0.725;
   position: fixed;
   right: 0;
   z-index: -1;
@@ -135,8 +145,8 @@ export const DetailImgTittle = styled.div`
   display: flex;
   align-items: flex-end;
   justify-content: flex-start;
-  -webkit-box-pack: start;
-  margin: 0px auto;
+  margin: 200px auto;
+  margin-bottom: 0px;
   height: 30vw;
   min-height: 170px;
   padding-bottom: 24px;
@@ -144,11 +154,35 @@ export const DetailImgTittle = styled.div`
   img {
     max-width: 600px;
     min-width: 200px;
-    width: 35vw;
+    width: 90vw;
+    box-shadow: 10px 10px 32px -1px rgba(0, 0, 0, 0.75);
+  }
+
+  @media (min-width: 768px) {
+    margin: 90px auto;
+    margin-bottom: 0px;
+    .img {
+      width: 35vw;
+    }
+  }
+
+  @media (min-width: 768px) {
+    margin: 0px auto;
+    margin-bottom: 0px;
   }
 `;
-export const DetailControlMeta = styled.div`
+export const DetailControlMeta = styled.div<IDetailControlMeta>`
   max-width: 874px;
+
+  .msg__detail {
+    margin: 0px;
+    padding: 10px 15px;
+    border: 1px solid;
+    background-color: rgb(0 0 0 /50%);
+    border-radius: 5px;
+    width: fit-content;
+    display: ${(props) => (props.display ? "block" : "none")};
+  }
 `;
 export const DetailControls = styled.div`
   display: flex;
@@ -194,7 +228,7 @@ export const DetailTrailer = styled(DetailPlay)`
   color: white;
   border: 1px solid rgb(249, 249, 249);
 `;
-export const DetailAddListButton = styled.div`
+export const DetailAddListButton = styled.div<IDetailAddListButton>`
   margin-right: 1rem;
   height: 44px;
   width: 44px;
@@ -205,19 +239,21 @@ export const DetailAddListButton = styled.div`
   background-color: rgba(0, 0, 0, 0.6);
   cursor: pointer;
   border: 1px solid rgb(249, 249, 249);
+  transition: all 250ms ease;
+  transform: ${(props) => (props.rotate ? " rotate(45deg)" : "inherit")};
   span {
     background-color: rgb(249, 249, 249);
     display: inline-block;
 
     &:first-child {
       height: 2px;
-      transform: translate(1px, 0) rotate(0deg);
-      width: 16px;
+      transform: translate(8px, 0px) rotate(0deg);
+      width: 20px;
     }
     &:nth-child(2) {
       height: 16px;
       width: 2px;
-      transform: translateX(-8px);
+      transform: translateX(-13px);
     }
   }
 `;
@@ -441,7 +477,9 @@ export const HeaderNavMenu = styled.div`
   margin-left: 1.5rem;
   text-transform: uppercase;
   @media (max-width: 768px) {
-    display: none;
+    opacity: 0;
+    pointer-events: none;
+    width: 50%;
   }
 
   a {
