@@ -37,30 +37,8 @@ const DetailPage = () => {
 
   const baseUrl = "https://image.tmdb.org/t/p/original/";
   const user_email = useSelector(selectUserEmail);
-  useEffect(() => {
-    const getDataFromId = async () => {
-      const request = await fetch(
-        `https://api.themoviedb.org/3/movie/${id}?api_key=${process.env.REACT_APP_APITMB_KEY}`
-      );
-      const response = await request.json();
-      if (response) {
-        setData({
-          title: response.original_title,
-          titleImg: response.original_title,
-          subTitle: response.tagline || "",
-          description: response.overview,
-          backgroundImg: response.poster_path,
-          backdrop_path: response.backdrop_path,
-        });
-      }
-    };
-    getDataFromId();
-  }, [id]);
 
   const verificarExistenciaPelicula = async () => {
-    if (!user_email) {
-      return;
-    }
     if (data) {
       try {
         const movieDocRef = doc(db, user_email, data.title);
@@ -78,7 +56,6 @@ const DetailPage = () => {
     verificarExistenciaPelicula();
     if (data) {
       try {
-        console.log(nuevoItemData, cdname);
         await setDoc(doc(db, cdname, data.title), nuevoItemData);
       } catch (error) {
         setMsg(`Error al guardar en Firestore: ${error}`);
@@ -106,6 +83,31 @@ const DetailPage = () => {
     }
   };
 
+  useEffect(() => {
+    const getDataFromId = async () => {
+      const request = await fetch(
+        `https://api.themoviedb.org/3/movie/${id}?api_key=${process.env.REACT_APP_APITMB_KEY}`
+      );
+      const response = await request.json();
+
+      if (response) {
+        setData({
+          title: response.original_title,
+          titleImg: response.original_title,
+          subTitle: response.tagline || "",
+          description: response.overview,
+          backgroundImg: response.poster_path,
+          backdrop_path: response.backdrop_path,
+        });
+      }
+    };
+
+    getDataFromId();
+  }, []);
+
+  useEffect(() => {
+    verificarExistenciaPelicula();
+  }, [data]);
   return (
     <DetailContainer>
       <DetailBackground>
