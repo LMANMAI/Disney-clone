@@ -57,6 +57,8 @@ const DetailPage = () => {
     if (data) {
       try {
         await setDoc(doc(db, cdname, data.title), nuevoItemData);
+        setDisplay(true);
+        setMsg("¡Agregado!");
       } catch (error) {
         setMsg(`Error al guardar en Firestore: ${error}`);
       }
@@ -147,13 +149,11 @@ const DetailPage = () => {
           </DetailTrailer>
           <DetailAddListButton
             rotate={exist}
-            title="Agregar a mi lista."
+            title={exist ? "Eliminar de mi lista." : "Agregar a mi lista."}
             onClick={() => {
               if (exist) {
                 eliminarPelicula();
               } else {
-                setDisplay(true);
-                setMsg("¡Agregado!");
                 agregarItem({ movieid: id }, user_email);
               }
             }}

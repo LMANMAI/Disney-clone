@@ -48,7 +48,7 @@ const Watchlist = () => {
     return () => {};
   }, []);
   return (
-    <WatchlistContainer style={{ marginTop: "100px", padding: "10px 25px" }}>
+    <WatchlistContainer>
       {movieList.map((item) => (
         <Link to={`/${item.id}`} className="watchlist__item">
           <img
