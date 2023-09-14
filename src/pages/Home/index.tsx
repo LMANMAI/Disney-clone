@@ -127,7 +127,10 @@ const HomePage = () => {
     <div>
       <HomeContainer>
         <div style={{ padding: "15px" }}>
-          <ImgSlider movies={moviesTrend || []} />
+          <div className="carousel-container">
+            <ImgSlider movies={moviesTrend || []} />
+          </div>
+
           <Viewer />
 
           <Section tittle="Recommended for you" arrayMovie={moviesRec} />

@@ -112,6 +112,10 @@ export const HomeContainer = styled.main`
     opacity: 1;
     z-index: -1;
   }
+
+  .carousel-container {
+    max-height: 350px;
+  }
 `;
 /**DEtail */
 
@@ -610,8 +614,6 @@ export const HeaderSignOutHover = styled.div`
 `;
 /**img slider */
 export const IMGSliderCarrousel = styled(Slider)`
-  max-height: 460px;
-  overflow: hidden;
   margin-top: 20px;
   & > button {
     opacity: 0;
@@ -642,6 +644,11 @@ export const IMGSliderCarrousel = styled(Slider)`
   .slick-next {
     right: -75px;
   }
+  .slick-slide img {
+    max-width: 100%;
+
+    max-height: 350px;
+  }
 `;
 export const IMGSliderWrapImg = styled.div`
   cursor: pointer;
@@ -659,6 +666,8 @@ export const IMGSliderWrapImg = styled.div`
       width: 100%;
       height: 100%;
       object-fit: cover;
+      max-width: 100%;
+      max-height: 100%;
     }
     &:hover {
       padding: 0;
