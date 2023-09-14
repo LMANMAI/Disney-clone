@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { collection, getDocs } from "firebase/firestore";
 import { selectUserEmail } from "../../features/user/userSlice";
-import { WatchlistContainer } from "./styles";
+import { WatchlistContainer, SectionWatchList } from "./styles";
 import { Link } from "react-router-dom";
 import db from "../../services/firebase";
 
@@ -48,19 +48,26 @@ const Watchlist = () => {
     return () => {};
   }, []);
   return (
-    <WatchlistContainer>
-      {movieList.map((item) => (
-        <Link to={`/${item.id}`} className="watchlist__item">
-          <img
-            src={`${baseUrl}${item.backdrop_path || item.poster_path}`}
-            alt={item.original_title}
-          />
-          <div className="overlay">
-            <div className="text">{item.title || item.name}</div>
-          </div>
-        </Link>
-      ))}
-    </WatchlistContainer>
+    <SectionWatchList>
+      <h1 className="padding--top-10 padding--bottom-6 text-color--primary">
+        Mi lista
+      </h1>
+      <h4 className="text__primary">Mis películas y series</h4>
+
+      <WatchlistContainer>
+        {movieList.map((item) => (
+          <Link to={`/${item.id}`} className="watchlist__item">
+            <img
+              src={`${baseUrl}${item.backdrop_path || item.poster_path}`}
+              alt={item.original_title}
+            />
+            <div className="overlay">
+              <div className="text">{item.title || item.name}</div>
+            </div>
+          </Link>
+        ))}
+      </WatchlistContainer>
+    </SectionWatchList>
   );
 };
 

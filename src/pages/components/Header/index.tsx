@@ -46,7 +46,9 @@ const Header = () => {
       const navContainer = document.querySelector(
         ".nav__container"
       ) as HTMLElement;
-
+      const topContainerBrand = document.querySelector(
+        ".container__topside"
+      ) as HTMLElement;
       if (navContainer) {
         if (currentPosition >= 50) {
           navContainer.style.background =
@@ -56,6 +58,13 @@ const Header = () => {
           navContainer.style.background =
             currentPosition < 50 ? "transparent" : "#090b13";
           navContainer.classList.remove("scroll-active");
+        }
+      }
+      if (topContainerBrand) {
+        if (currentPosition >= 60) {
+          topContainerBrand.style.opacity = "0.2";
+        } else {
+          topContainerBrand.style.opacity = "1";
         }
       }
     };
@@ -106,28 +115,16 @@ const Header = () => {
           <HeaderNavMenu>
             <Link to="/home">
               <img src="images/home-icon.svg" alt="Home" />
-              <span>home</span>
+              <span className="menu_span">home</span>
             </Link>
             <a>
               <img src="images/search-icon.svg" alt="Home" />
-              <span>search</span>
+              <span className="menu_span">search</span>
             </a>
             <Link to="/watchlist">
               <img src="images/watchlist-icon.svg" alt="Home" />
-              <span>watchlist</span>
+              <span className="menu_span">watchlist</span>
             </Link>
-            <a>
-              <img src="images/original-icon.svg" alt="Home" />
-              <span>originals</span>
-            </a>
-            <a>
-              <img src="images/movie-icon.svg" alt="Home" />
-              <span>movies</span>
-            </a>
-            <a>
-              <img src="images/series-icon.svg" alt="Home" />
-              <span>series</span>
-            </a>
           </HeaderNavMenu>
           <HeaderSignOutHover>
             <HeaderImgUser src={photo || ""} alt={username || ""} />

@@ -117,6 +117,7 @@ export const HomeContainer = styled.main`
 
 export const DetailContainer = styled.div`
   position: relative;
+  top: 72px;
   min-height: calc(100vh - 250px);
   overflow-x: hidden;
   display: block;
@@ -124,11 +125,22 @@ export const DetailContainer = styled.div`
   .back__btn {
     z-index: 11;
   }
+  .background {
+    background-color: rgb(26, 29, 41);
+    position: fixed;
+    height: 100vh;
+    top: 0px;
+    transition: opacity 200ms ease 0s;
+    width: 100%;
+    z-index: -3;
+    left: 0;
+  }
 `;
 export const DetailBackground = styled.div`
+  position: fixed;
+  top: 0;
   left: 0;
   opacity: 0.725;
-  position: fixed;
   right: 0;
   z-index: -1;
   img {
@@ -239,7 +251,7 @@ export const DetailAddListButton = styled.div<IDetailAddListButton>`
   cursor: pointer;
   border: 1px solid rgb(249, 249, 249);
   transition: all 250ms ease;
-  transform: ${(props) => (props.rotate ? " rotate(45deg)" : "inherit")};
+  transform: ${(props) => (props.rotate ? "rotate(45deg)" : "inherit")};
   span {
     background-color: rgb(249, 249, 249);
     display: inline-block;
@@ -362,13 +374,14 @@ export const ContenedorPrincipal = styled.div`
 export const ContenedorCarrousel = styled.div`
   width: 100%;
   overflow: hidden;
+  padding: 35px 0px;
 `;
 export const Carrousel = styled.div`
-  display: flex;
-  flex-wrap: nowrap;
-  gap: 10px;
-  scroll-behavior: smooth;
-  padding: 10px;
+ display: flex;
+    flex-wrap: nowrap;
+    gap: 25px;
+    scroll-behavior: smooth;
+}
 `;
 export const Pelicula = styled.div`
   width: 100%;
@@ -388,8 +401,7 @@ export const Pelicula = styled.div`
     border-radius: 5px;
     object-fit: cover;
     &:hover {
-      box-shadow: rgb(0 0 0 / 80%) 0px 40px 58px -14px,
-        rgb(0 0 0 /72%) 0px 30px 22px -10px;
+      box-shadow: -1px 36px 49px -12px rgba(0, 0, 0, 0.75);
       transform: scale(1.04);
       border-color: rgba(249, 249, 249, 0.8);
       transform-origin: center;
@@ -475,17 +487,17 @@ export const HeaderNavMenu = styled.div`
   margin-right: auto;
   margin-left: 1.5rem;
   text-transform: uppercase;
+
   @media (max-width: 768px) {
-    opacity: 0;
-    pointer-events: none;
-    width: 50%;
+    .menu_span {
+      display: none;
+    }
   }
 
   a {
     display: flex;
     align-items: center;
     padding: 0 12px;
-    //align-items: center;
     img {
       height: 20px;
       width: 20px;
@@ -598,6 +610,8 @@ export const HeaderSignOutHover = styled.div`
 `;
 /**img slider */
 export const IMGSliderCarrousel = styled(Slider)`
+  max-height: 460px;
+  overflow: hidden;
   margin-top: 20px;
   & > button {
     opacity: 0;
@@ -644,6 +658,7 @@ export const IMGSliderWrapImg = styled.div`
     img {
       width: 100%;
       height: 100%;
+      object-fit: cover;
     }
     &:hover {
       padding: 0;

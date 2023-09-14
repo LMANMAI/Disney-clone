@@ -1,10 +1,9 @@
 import styled from "styled-components";
 
-export const WatchlistContainer = styled.section`
+export const WatchlistContainer = styled.div`
   margin-top: 75px;
-  padding: 10px 25px;
   margin: 0px auto;
-  padding: 10px 25px;
+  padding: 10px 0px;
   width: calc(100vw - 60px);
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(49%, 1fr));
@@ -68,5 +67,29 @@ export const WatchlistContainer = styled.section`
       transform: translate(-50%, -50%);
       -ms-transform: translate(-50%, -50%);
     }
+  }
+`;
+
+export const SectionWatchList = styled.section`
+  display: block;
+  flex-grow: 1;
+  flex-shrink: 0;
+  min-height: calc(100vh - 250px);
+  overflow-x: hidden;
+  padding: 0 calc(3.5vw + 24px);
+  position: relative;
+  top: 72px;
+
+  h1 {
+    font-family: Avenir-World-for-Disney-Demi, sans-serif;
+    font-size: 44px;
+    letter-spacing: 0.11px;
+    line-height: 1.2;
+  }
+  h4 {
+    font-family: Avenir-World-for-Disney-Demi, sans-serif;
+    font-size: 20px;
+    letter-spacing: 0.11px;
+    line-height: 1.4;
   }
 `;

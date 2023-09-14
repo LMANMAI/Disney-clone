@@ -2,8 +2,20 @@ import React from "react";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { IMGSliderCarrousel, IMGSliderWrapImg } from "../../../assets";
+import { Link } from "react-router-dom";
 
-const ImgSlider = () => {
+type Movie = {
+  backgroundImg: string;
+  cardImg: string;
+  subTitle: string;
+  description: string;
+  titleImg: string;
+  id: number;
+};
+type ImgSliderProps = {
+  movies: Movie[];
+};
+const ImgSlider: React.FC<ImgSliderProps> = ({ movies }) => {
   let settings = {
     dots: true,
     infinite: true,
@@ -12,28 +24,17 @@ const ImgSlider = () => {
     slidesToScroll: 1,
     autoplay: true,
   };
+  const baseUrl = "https://image.tmdb.org/t/p/original/";
+
   return (
     <IMGSliderCarrousel {...settings}>
-      <IMGSliderWrapImg>
-        <a href="">
-          <img src="/images/slider-badag.jpg" alt="" />
-        </a>
-      </IMGSliderWrapImg>
-      <IMGSliderWrapImg>
-        <a href="">
-          <img src="/images/slider-badging.jpg" alt="" />
-        </a>
-      </IMGSliderWrapImg>
-      <IMGSliderWrapImg>
-        <a href="">
-          <img src="/images/slider-scale.jpg" alt="" />
-        </a>
-      </IMGSliderWrapImg>
-      <IMGSliderWrapImg>
-        <a href="">
-          <img src="/images/slider-scales.jpg" alt="" />
-        </a>
-      </IMGSliderWrapImg>
+      {movies.map((item: Movie) => (
+        <IMGSliderWrapImg key={item.id}>
+          <Link to={`/${item.id}`}>
+            <img src={`${baseUrl}${item?.backgroundImg}`} alt={item.titleImg} />
+          </Link>
+        </IMGSliderWrapImg>
+      ))}
     </IMGSliderCarrousel>
   );
 };

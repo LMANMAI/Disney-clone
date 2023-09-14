@@ -167,6 +167,7 @@ const DetailPage = () => {
 
         <span className="msg__detail">{msg}</span>
       </DetailControlMeta>
+      <div className="background"></div>
     </DetailContainer>
   );
 };
