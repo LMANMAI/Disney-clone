@@ -6,6 +6,7 @@ import {
   DetailPage,
   Watchlist,
   Categories,
+  Search,
 } from "../pages";
 import { Header } from "../pages/components";
 import { selectUserName } from "../features/user/userSlice";
@@ -24,6 +25,7 @@ const RoutesComponent = () => {
             <Route path="/:id" element={<DetailPage />} />
             <Route path="/watchlist" element={<Watchlist />} />
             <Route path="/categ/:categ" element={<Categories />} />
+            <Route path="/search" element={<Search />} />
           </>
         )}
       </Routes>

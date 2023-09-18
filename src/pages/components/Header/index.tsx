@@ -117,10 +117,10 @@ const Header = () => {
               <img src="images/home-icon.svg" alt="Home" />
               <span className="menu_span">home</span>
             </Link>
-            <a>
+            <Link to="/search">
               <img src="images/search-icon.svg" alt="Home" />
               <span className="menu_span">search</span>
-            </a>
+            </Link>
             <Link to="/watchlist">
               <img src="images/watchlist-icon.svg" alt="Home" />
               <span className="menu_span">watchlist</span>
