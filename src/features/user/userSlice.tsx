@@ -3,7 +3,7 @@ import { RootState } from "../../app/store";
 
 interface UserState {
   name: string | null;
-  email: string | null;
+  email: string;
   photo: string | null;
 }
 const initialState: UserState = {
@@ -22,7 +22,7 @@ const userSlice = createSlice({
     },
     setSignOutState: (state) => {
       state.name = null;
-      state.email = null;
+      state.email = "";
       state.photo = null;
     },
   },

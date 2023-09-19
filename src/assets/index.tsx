@@ -1,5 +1,12 @@
 import styled from "styled-components";
 import Slider from "react-slick";
+interface IDetailAddListButton {
+  rotate?: boolean;
+}
+interface IDetailControlMeta {
+  display?: boolean;
+}
+
 /**Login */
 export const WarningMessage = styled.div`
   background-color: white;
@@ -94,8 +101,8 @@ export const HomeContainer = styled.main`
   min-height: calc(100vh - 250px);
   overflow-x: hidden;
   display: block;
-  top: 72px;
-  padding: 0 calc(3.5vw - 5px);
+  padding: 0px calc(3.5vw - 5px);
+  padding-top: 72px;
   &:after {
     background: url("/images/home-background.png") center center / cover
       no-repeat fixed;
@@ -105,21 +112,39 @@ export const HomeContainer = styled.main`
     opacity: 1;
     z-index: -1;
   }
+
+  .carousel-container {
+    max-height: 350px;
+  }
 `;
 /**DEtail */
 
 export const DetailContainer = styled.div`
   position: relative;
+  top: 72px;
   min-height: calc(100vh - 250px);
   overflow-x: hidden;
   display: block;
-  top: 72px;
   padding: 0 calc(3.5vw + 5px);
+  .back__btn {
+    z-index: 11;
+  }
+  .background {
+    background-color: rgb(26, 29, 41);
+    position: fixed;
+    height: 100vh;
+    top: 0px;
+    transition: opacity 200ms ease 0s;
+    width: 100%;
+    z-index: -3;
+    left: 0;
+  }
 `;
 export const DetailBackground = styled.div`
-  left: 0;
-  opacity: 0.9;
   position: fixed;
+  top: 0;
+  left: 0;
+  opacity: 0.725;
   right: 0;
   z-index: -1;
   img {
@@ -135,8 +160,8 @@ export const DetailImgTittle = styled.div`
   display: flex;
   align-items: flex-end;
   justify-content: flex-start;
-  -webkit-box-pack: start;
-  margin: 0px auto;
+  margin: 200px auto;
+  margin-bottom: 0px;
   height: 30vw;
   min-height: 170px;
   padding-bottom: 24px;
@@ -144,21 +169,45 @@ export const DetailImgTittle = styled.div`
   img {
     max-width: 600px;
     min-width: 200px;
-    width: 35vw;
+    width: 90vw;
+    box-shadow: 10px 10px 32px -1px rgba(0, 0, 0, 0.75);
+  }
+
+  @media (min-width: 768px) {
+    margin: 90px auto;
+    margin-bottom: 0px;
+    .img {
+      width: 35vw;
+    }
+  }
+
+  @media (min-width: 768px) {
+    margin: 0px auto;
+    margin-bottom: 0px;
   }
 `;
-export const DetailControlMeta = styled.div`
+export const DetailControlMeta = styled.div<IDetailControlMeta>`
   max-width: 874px;
+
+  .msg__detail {
+    margin: 0px;
+    padding: 10px 15px;
+    border: 1px solid;
+    background-color: rgb(0 0 0 /50%);
+    border-radius: 5px;
+    width: fit-content;
+    display: ${(props) => (props.display ? "block" : "none")};
+  }
 `;
 export const DetailControls = styled.div`
   display: flex;
   align-items: center;
-  flex-flow: row nowrap;
+  flex-flow: row wrap;
   margin: 24px 0px;
 `;
 export const DetailPlay = styled.button`
   font-size: 14px;
-  margin: 0px 22px 0px 0px;
+  margin: 0px 22px 10px 0px;
   padding: 0px 24px;
   height: 56px;
   border-radius: 4px;
@@ -183,7 +232,7 @@ export const DetailPlay = styled.button`
     height: 45px;
     padding: 0 15px;
     font-size: 12px;
-    margin: 0px 25px 0px 0px;
+    margin: 0px 25px 10px 0px;
     img {
       width: 25px;
     }
@@ -194,7 +243,7 @@ export const DetailTrailer = styled(DetailPlay)`
   color: white;
   border: 1px solid rgb(249, 249, 249);
 `;
-export const DetailAddListButton = styled.div`
+export const DetailAddListButton = styled.div<IDetailAddListButton>`
   margin-right: 1rem;
   height: 44px;
   width: 44px;
@@ -205,19 +254,21 @@ export const DetailAddListButton = styled.div`
   background-color: rgba(0, 0, 0, 0.6);
   cursor: pointer;
   border: 1px solid rgb(249, 249, 249);
+  transition: all 250ms ease;
+  transform: ${(props) => (props.rotate ? "rotate(45deg)" : "inherit")};
   span {
     background-color: rgb(249, 249, 249);
     display: inline-block;
 
     &:first-child {
       height: 2px;
-      transform: translate(1px, 0) rotate(0deg);
-      width: 16px;
+      transform: translate(8px, 0px) rotate(0deg);
+      width: 20px;
     }
     &:nth-child(2) {
       height: 16px;
       width: 2px;
-      transform: translateX(-8px);
+      transform: translateX(-13px);
     }
   }
 `;
@@ -257,15 +308,14 @@ export const ViewerContainer = styled.div`
 `;
 export const ViewerWrapper = styled.div`
   padding-top: 56.25%;
-  border-radius: 10px;
+  background: linear-gradient(rgb(48, 50, 62), rgb(30, 31, 42));
+  border-radius: 4px;
   box-shadow: rgb(0 0 0 /69%) 0px 26px 30px -10px,
     rgb(0 0 0 /73%) 0px 16px 10px -10px;
   cursor: pointer;
   overflow: hidden;
   position: relative;
   transition: all 250ms cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  border: 3px solid rgba(249, 249, 249, 0.1);
-
   img {
     inset: 0px;
     display: block;
@@ -328,13 +378,14 @@ export const ContenedorPrincipal = styled.div`
 export const ContenedorCarrousel = styled.div`
   width: 100%;
   overflow: hidden;
+  padding: 35px 0px;
 `;
 export const Carrousel = styled.div`
-  display: flex;
-  flex-wrap: nowrap;
-  gap: 10px;
-  scroll-behavior: smooth;
-  padding: 10px;
+ display: flex;
+    flex-wrap: nowrap;
+    gap: 25px;
+    scroll-behavior: smooth;
+}
 `;
 export const Pelicula = styled.div`
   width: 100%;
@@ -354,8 +405,7 @@ export const Pelicula = styled.div`
     border-radius: 5px;
     object-fit: cover;
     &:hover {
-      box-shadow: rgb(0 0 0 / 80%) 0px 40px 58px -14px,
-        rgb(0 0 0 /72%) 0px 30px 22px -10px;
+      box-shadow: -1px 36px 49px -12px rgba(0, 0, 0, 0.75);
       transform: scale(1.04);
       border-color: rgba(249, 249, 249, 0.8);
       transform-origin: center;
@@ -407,7 +457,7 @@ export const HeaderNav = styled.nav`
   left: 0;
   right: 0;
   height: 70px;
-  background-color: #090b13;
+  background-color: transparent;
   width: 100%;
   display: flex;
   justify-content: space-between;
@@ -415,6 +465,7 @@ export const HeaderNav = styled.nav`
   padding: 0 30px;
   letter-spacing: 15px;
   z-index: 10;
+  transition: background 250ms ease;
 `;
 export const HeaderLogoImage = styled.a`
   padding: 0;
@@ -440,15 +491,17 @@ export const HeaderNavMenu = styled.div`
   margin-right: auto;
   margin-left: 1.5rem;
   text-transform: uppercase;
+
   @media (max-width: 768px) {
-    display: none;
+    .menu_span {
+      display: none;
+    }
   }
 
   a {
     display: flex;
     align-items: center;
     padding: 0 12px;
-    //align-items: center;
     img {
       height: 20px;
       width: 20px;
@@ -591,6 +644,11 @@ export const IMGSliderCarrousel = styled(Slider)`
   .slick-next {
     right: -75px;
   }
+  .slick-slide img {
+    max-width: 100%;
+
+    max-height: 350px;
+  }
 `;
 export const IMGSliderWrapImg = styled.div`
   cursor: pointer;
@@ -607,6 +665,9 @@ export const IMGSliderWrapImg = styled.div`
     img {
       width: 100%;
       height: 100%;
+      object-fit: cover;
+      max-width: 100%;
+      max-height: 100%;
     }
     &:hover {
       padding: 0;

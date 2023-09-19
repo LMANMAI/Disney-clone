@@ -12,16 +12,17 @@ import {
 } from "firebase/auth";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyAwD2LMJtWgt-Y2-C7UKEZ5hrPmNHa8bbg",
-  authDomain: "disney-clone-3aec6.firebaseapp.com",
-  projectId: "disney-clone-3aec6",
-  storageBucket: "disney-clone-3aec6.appspot.com",
-  messagingSenderId: "761551625553",
-  appId: "1:761551625553:web:9844cca3df6baac4c0c770",
-  measurementId: "G-3Y30EWPWZ3",
+  apiKey: process.env.REACT_APP_API_KEY,
+  authDomain: process.env.REACT_APP_AUTH_DOMAIN,
+  databaseURL: process.env.REACT_APP_DATABASE_URL,
+  projectId: process.env.REACT_APP_PROJECT_ID,
+  storageBucket: process.env.REACT_APP_STORAGE_BUCKET,
+  messagingSenderId: process.env.REACT_APP_MESSAGING_SENDER_ID,
+  appId: process.env.REACT_APP_APP_ID,
+  measurementId: process.env.REACT_APP_MEASUREMENT_ID,
 };
-
 const firebaseApp = initializeApp(firebaseConfig);
+
 const db = getFirestore(firebaseApp);
 const auth = getAuth(firebaseApp);
 

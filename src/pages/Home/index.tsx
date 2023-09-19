@@ -13,9 +13,9 @@ import { HomeContainer } from "../../assets";
 type MovieData = {
   backgroundImg: string;
   cardImg: string;
-  subTitle: string;
+  overview: string;
   description: string;
-  titleImg: string;
+  title: string;
   id: number;
   backdrop_path?: string;
 };
@@ -70,13 +70,9 @@ const HomePage = () => {
       .filter((item: MovieData | null) => item?.backdrop_path !== null)
       .map((item: MovieData | null) => ({
         backgroundImg: item?.backdrop_path,
-        cardImg:
-          "https://prod-ripcut-delivery.disney-plus.net/v1/variant/disney/0ECD36DD35658155915685271440833C29ED87E788CF8AE111AA6BCA6B939C37/scale?width=400&aspectRatio=1.78&format=jpeg",
-        subTitle:
-          "2010 • 1h 40m • Family, Fantasy, Animation, Action-Adventure, Musical",
-        description:
-          "When the kingdom's most wanted bandit is taken hostage by Rapunzel — a teen with 70 feet of golden hair who's looking to escape the tower where she's been locked away for years — the unlikely duo sets off on a hair-raising escapade.",
-        titleImg: "https://prod-ripcut-delivery.disney-plus.net/v1/",
+        cardImg: item?.backdrop_path,
+        description: item?.overview,
+        titleImg: item?.title,
         id: item?.id,
       }));
 
@@ -84,13 +80,9 @@ const HomePage = () => {
       .filter((item: MovieData | null) => item?.backdrop_path !== null)
       .map((item: MovieData | null) => ({
         backgroundImg: item?.backdrop_path,
-        cardImg:
-          "https://prod-ripcut-delivery.disney-plus.net/v1/variant/disney/0ECD36DD35658155915685271440833C29ED87E788CF8AE111AA6BCA6B939C37/scale?width=400&aspectRatio=1.78&format=jpeg",
-        subTitle:
-          "2010 • 1h 40m • Family, Fantasy, Animation, Action-Adventure, Musical",
-        description:
-          "When the kingdom's most wanted bandit is taken hostage by Rapunzel — a teen with 70 feet of golden hair who's looking to escape the tower where she's been locked away for years — the unlikely duo sets off on a hair-raising escapade.",
-        titleImg: "https://prod-ripcut-delivery.disney-plus.net/v1/",
+        cardImg: item?.backdrop_path,
+        description: item?.overview,
+        titleImg: item?.title,
         id: item?.id,
       }));
 
@@ -98,13 +90,9 @@ const HomePage = () => {
       .filter((item: MovieData | null) => item?.backdrop_path !== null)
       .map((item: MovieData | null) => ({
         backgroundImg: item?.backdrop_path,
-        cardImg:
-          "https://prod-ripcut-delivery.disney-plus.net/v1/variant/disney/0ECD36DD35658155915685271440833C29ED87E788CF8AE111AA6BCA6B939C37/scale?width=400&aspectRatio=1.78&format=jpeg",
-        subTitle:
-          "2010 • 1h 40m • Family, Fantasy, Animation, Action-Adventure, Musical",
-        description:
-          "When the kingdom's most wanted bandit is taken hostage by Rapunzel — a teen with 70 feet of golden hair who's looking to escape the tower where she's been locked away for years — the unlikely duo sets off on a hair-raising escapade.",
-        titleImg: "https://prod-ripcut-delivery.disney-plus.net/v1/",
+        cardImg: item?.backdrop_path,
+        description: item?.overview,
+        titleImg: item?.title,
         id: item?.id,
       }));
 
@@ -112,16 +100,11 @@ const HomePage = () => {
       .filter((item: MovieData | null) => item?.backdrop_path !== null)
       .map((item: MovieData | null) => ({
         backgroundImg: item?.backdrop_path,
-        cardImg:
-          "https://prod-ripcut-delivery.disney-plus.net/v1/variant/disney/0ECD36DD35658155915685271440833C29ED87E788CF8AE111AA6BCA6B939C37/scale?width=400&aspectRatio=1.78&format=jpeg",
-        subTitle:
-          "2010 • 1h 40m • Family, Fantasy, Animation, Action-Adventure, Musical",
-        description:
-          "When the kingdom's most wanted bandit is taken hostage by Rapunzel — a teen with 70 feet of golden hair who's looking to escape the tower where she's been locked away for years — the unlikely duo sets off on a hair-raising escapade.",
-        titleImg: "https://prod-ripcut-delivery.disney-plus.net/v1/",
+        cardImg: item?.backdrop_path,
+        description: item?.overview,
+        titleImg: item?.title,
         id: item?.id,
       }));
-
     dispatch(
       setMovies({
         recommended: recommends,
@@ -143,12 +126,18 @@ const HomePage = () => {
   return (
     <div>
       <HomeContainer>
-        <ImgSlider />
-        <Viewer />
-        <Section tittle="Recommended for you" arrayMovie={moviesRec} />
-        <Section tittle="Trending" arrayMovie={moviesTrend} />
-        <Section tittle="New on Disney+" arrayMovie={moviesNew} />
-        <Section tittle="Originals" arrayMovie={moviesOrig} />
+        <div style={{ padding: "15px" }}>
+          <div className="carousel-container">
+            <ImgSlider movies={moviesTrend || []} />
+          </div>
+
+          <Viewer />
+
+          <Section tittle="Recommended for you" arrayMovie={moviesRec} />
+          <Section tittle="Trending" arrayMovie={moviesTrend} />
+          <Section tittle="New on Disney+" arrayMovie={moviesNew} />
+          <Section tittle="Originals" arrayMovie={moviesOrig} />
+        </div>
       </HomeContainer>
       <Footer />
     </div>

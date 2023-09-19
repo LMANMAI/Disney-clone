@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { auth, provider, signInWithPopup } from "../../../services/firebase";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
@@ -40,13 +40,46 @@ const Header = () => {
     // eslint-disable-next-line
   }, [username]);
 
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentPosition = window.scrollY;
+      const navContainer = document.querySelector(
+        ".nav__container"
+      ) as HTMLElement;
+      const topContainerBrand = document.querySelector(
+        ".container__topside"
+      ) as HTMLElement;
+      if (navContainer) {
+        if (currentPosition >= 50) {
+          navContainer.style.background =
+            currentPosition >= 50 ? "#090b13" : "transparent";
+          navContainer.classList.add("scroll-active");
+        } else {
+          navContainer.style.background =
+            currentPosition < 50 ? "transparent" : "#090b13";
+          navContainer.classList.remove("scroll-active");
+        }
+      }
+      if (topContainerBrand) {
+        if (currentPosition >= 60) {
+          topContainerBrand.style.opacity = "0.2";
+        } else {
+          topContainerBrand.style.opacity = "1";
+        }
+      }
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
   const handleAuth = () => {
     if (!username) {
       signInWithPopup(auth, provider)
         .then((result) => {
           setUser(result.user);
         })
-        .catch((error) => console.log(error));
+        .catch((error) => {});
     } else if (username) {
       auth
         .signOut()
@@ -60,17 +93,18 @@ const Header = () => {
 
   const setUser = (user: UserType) => {
     const displayName = user.displayName || "Usuario Anónimo";
+    const email = user.email || "";
     dispatch(
       setUserLoginDetails({
         name: displayName,
-        email: user.email,
+        email: email,
         photo: user.photoURL,
       })
     );
   };
 
   return (
-    <HeaderNav>
+    <HeaderNav className="nav__container">
       <WarningMessage>
         This is a study case project , is not the original page.
       </WarningMessage>
@@ -81,28 +115,16 @@ const Header = () => {
           <HeaderNavMenu>
             <Link to="/home">
               <img src="images/home-icon.svg" alt="Home" />
-              <span>home</span>
+              <span className="menu_span">home</span>
             </Link>
-            <a>
+            <Link to="/search">
               <img src="images/search-icon.svg" alt="Home" />
-              <span>search</span>
-            </a>
-            <a>
+              <span className="menu_span">search</span>
+            </Link>
+            <Link to="/watchlist">
               <img src="images/watchlist-icon.svg" alt="Home" />
-              <span>watchlist</span>
-            </a>
-            <a>
-              <img src="images/original-icon.svg" alt="Home" />
-              <span>originals</span>
-            </a>
-            <a>
-              <img src="images/movie-icon.svg" alt="Home" />
-              <span>movies</span>
-            </a>
-            <a>
-              <img src="images/series-icon.svg" alt="Home" />
-              <span>series</span>
-            </a>
+              <span className="menu_span">watchlist</span>
+            </Link>
           </HeaderNavMenu>
           <HeaderSignOutHover>
             <HeaderImgUser src={photo || ""} alt={username || ""} />

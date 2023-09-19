@@ -18,7 +18,7 @@ type MovieData = {
   subTitle: string;
   description: string;
   titleImg: string;
-  id: number; // O el tipo de dato correcto para el ID
+  id: number;
 };
 
 const Section = ({
@@ -26,7 +26,7 @@ const Section = ({
   arrayMovie,
 }: {
   tittle: string;
-  arrayMovie: MovieData[] | null; // Cambiar a un array de MovieData
+  arrayMovie: MovieData[] | null;
 }) => {
   const baseUrl = "https://image.tmdb.org/t/p/original/";
 
@@ -66,10 +66,7 @@ const Section = ({
           <Carrousel className="carrousel">
             {arrayMovie?.map((onemovie) => (
               <Pelicula className={`pelicula_${tittle}`} key={onemovie.id}>
-                <Link
-                  to={`/detail/${onemovie.id}`}
-                  onClick={() => console.log(onemovie)}
-                >
+                <Link to={`/${onemovie.id}`}>
                   <img
                     loading="lazy"
                     src={`${baseUrl}${onemovie.backgroundImg}`}
