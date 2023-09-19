@@ -202,12 +202,12 @@ export const DetailControlMeta = styled.div<IDetailControlMeta>`
 export const DetailControls = styled.div`
   display: flex;
   align-items: center;
-  flex-flow: row nowrap;
+  flex-flow: row wrap;
   margin: 24px 0px;
 `;
 export const DetailPlay = styled.button`
   font-size: 14px;
-  margin: 0px 22px 0px 0px;
+  margin: 0px 22px 10px 0px;
   padding: 0px 24px;
   height: 56px;
   border-radius: 4px;
@@ -232,7 +232,7 @@ export const DetailPlay = styled.button`
     height: 45px;
     padding: 0 15px;
     font-size: 12px;
-    margin: 0px 25px 0px 0px;
+    margin: 0px 25px 10px 0px;
     img {
       width: 25px;
     }

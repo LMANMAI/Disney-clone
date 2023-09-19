@@ -1,10 +1,13 @@
 import styled from "styled-components";
-
-export const WatchlistContainer = styled.div`
+interface IWatchlistContainer {
+  width?: number;
+}
+export const WatchlistContainer = styled.div<IWatchlistContainer>`
   margin-top: 75px;
   margin: 0px auto;
   padding: 10px 0px;
-  width: calc(100vw - 60px);
+  width: ${(props) =>
+    props.width ? `calc(${props.width}vw - 60px)` : "calc(100vw - 60px)"};
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(49%, 1fr));
   transition: 250ms ease-in-out;

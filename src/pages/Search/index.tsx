@@ -1,7 +1,21 @@
 import React, { useState, useEffect } from "react";
 import { Wrapper, Section } from "./styles";
+import { Link } from "react-router-dom";
+import { WatchlistContainer } from "../Watchlist/styles";
+
+interface Movie {
+  id: number;
+  backdrop_path: string | null;
+  poster_path: string | null;
+  original_title: string;
+  title: string | null;
+  name: string | null;
+}
+
 const Search = () => {
   const [search, setSearchValue] = useState("");
+  const [movieList, setmovieList] = useState<Movie[]>([]);
+  const baseUrl = "https://image.tmdb.org/t/p/original/";
 
   const handleSearchValue = (e: any) => {
     setSearchValue(e.target.value);
@@ -14,7 +28,7 @@ const Search = () => {
         `https://api.themoviedb.org/3/search/movie?api_key=${process.env.REACT_APP_APITMB_KEY}&query=${search}`
       );
       const res = await requestSearch.json();
-
+      setmovieList(res.results);
       console.log(res);
     };
     handleSearch();
@@ -54,7 +68,60 @@ const Search = () => {
             </form>
           </div>
           <div style={{ paddingTop: "100px" }}>
-            <div style={{ marginTop: "50px" }}>busqueda</div>
+            <div
+              style={{
+                marginTop: "50px",
+                display: "flex",
+                justifyContent: "center",
+              }}
+            >
+              <div style={{ maxWidth: "80vw" }}>
+                {Array.isArray(movieList) && movieList.length > 0 ? (
+                  <WatchlistContainer width={80}>
+                    {movieList.map((item) => {
+                      if (
+                        !item.backdrop_path === null
+                          ? item.backdrop_path
+                          : item.poster_path
+                      ) {
+                        return (
+                          <Link
+                            to={`/${item.id}`}
+                            className="watchlist__item"
+                            key={item.id}
+                          >
+                            <img
+                              src={
+                                item.backdrop_path
+                                  ? `${baseUrl}${item.backdrop_path}`
+                                  : `${baseUrl}${item.poster_path}}`
+                              }
+                              alt={
+                                (item.original_title ||
+                                  item.title ||
+                                  item.name) ??
+                                "Imagen de la pelicula"
+                              }
+                            />
+                            <div className="overlay">
+                              <div className="text">
+                                {item.title || item.name}
+                              </div>
+                            </div>
+                          </Link>
+                        );
+                      }
+                    })}
+                  </WatchlistContainer>
+                ) : (
+                  <p>
+                    {movieList.length <= 0 && search.length === 0
+                      ? "Comienza buscando un titulo."
+                      : `No se encontraron resultados para la busqueda de :${search}`}
+                  </p>
+                )}
+              </div>
+            </div>
           </div>
         </div>
       </Section>
