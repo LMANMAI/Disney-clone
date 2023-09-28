@@ -58,7 +58,7 @@ export const CatContainer = styled.main`
   }
   .container {
     display: grid;
-    grid-gap: var(--geist-gap);
+    grid-gap: 10px;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     a {
       color: #f9f9f9;
